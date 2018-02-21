@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 import React from 'react';
@@ -69,3 +70,13 @@ ReactDOM.render(
  <Game />,
  document.getElementById('root')
 );
+=======
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();
+>>>>>>> 8b58a3c2a1346d390da88df738dbf895b8d71061
