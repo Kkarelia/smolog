@@ -9,15 +9,25 @@ function formatName(user) {
   return user.firstName + ' ' + user.lastName;
 }
 
+function formatFirstname(user) {
+  return user.firstName;
+}
+
+function formatLastname(user) {
+  return user.lastName;
+}
+
 const user = {
   firstName: 'Harper',
   lastName: 'Perez'
 };
 
 const element = (
-  <h1>
-    Hello, {formatName(user)}!
-  </h1>
+  <form>
+   First Name: <input type="text" name="firstname" value={formatFirstname(user)}></input>
+   <br /> <br />
+   Last Name: <input type="text" name="lastname" value={formatLastname(user)}></input>
+  </form>
 );
 
 ReactDOM.render(
