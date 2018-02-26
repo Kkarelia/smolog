@@ -20,28 +20,49 @@ class Smoke {
 class SmokeForm extends React.Component {
   constructor(props) {
      super(props);
-     this.state = {brand: ''};
+     var today = new Date();
 
-     this.handleChange = this.handleChange.bind(this);
+     this.state = {brand: 'Peterson', blend: 'Old Dublin', timenday: today, comment: 'Your average good smoke'};
+
+     this.brandChange = this.brandChange.bind(this);
+     this.blendChange = this.blendChange.bind(this);
+     this.timendayChange = this.timendayChange.bind(this);
+     this.commentChange = this.commentChange.bind(this);
      this.handleSubmit = this.handleSubmit.bind(this);
    }
 
-   handleChange(event) {
+   brandChange(event) {
     this.setState({brand: event.target.value});
+    }
+
+  blendChange(event) {
+   this.setState({blend: event.target.value});
+   }
+
+   timendayChange(event) {
+    this.setState({timenday: event.target.value});
+
   }
 
+  commentChange(event) {
+   this.setState({comment: event.target.value});
+ }
+
+
+
+
    handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.brand);
+    alert('Something changed!: ' + this.state.brand  + this.state.blend  + this.state.timenday  + this.state.comment);
     event.preventDefault();
   }
   render() {
   return (
     <form onSubmit={this.handleSubmit}>
       <table border="0">
-      <tr><td>Brand:</td><td><input type="text" name="brand" size="50" value={this.state.brand} onChange={this.handleChange} ></input></td></tr>
-      <tr><td>Blend:</td><td><input type="text" name="blend" size="50" value={this.props.blend}></input></td></tr>
-      <tr><td>Time:</td><td><input type="text" name="time" size="50" value={this.props.timenday}></input></td></tr>
-      <tr><td valign="top">Note:</td><td><textarea rows="4" cols="46">{this.props.comment}</textarea></td></tr>
+      <tr><td>Brand:</td><td><input type="text" name="brand" size="50" value={this.state.brand} onChange={this.brandChange} ></input></td></tr>
+      <tr><td>Blend:</td><td><input type="text" name="blend" size="50" value={this.state.blend} onChange={this.blendChange}></input></td></tr>
+      <tr><td>Time:</td><td><input type="text" name="time" size="50" value={this.state.timenday} onChange={this.timendayChange}></input></td></tr>
+      <tr><td valign="top">Note:</td><td><textarea rows="4" cols="46" onChange={this.commentChange}>{this.state.comment}</textarea></td></tr>
       <tr><td valign="top"></td><td><input type="submit" value="Log This Smoke" /></td></tr>
       </table>
     </form>
@@ -49,10 +70,10 @@ class SmokeForm extends React.Component {
   }
 }
 
-const smoke = new Smoke("Peterson","Old Dublin", "Avesome evening smoke in vintage Custom-Bilt pipe");
+//const smoke = new Smoke("Peterson","Old Dublin", "Avesome evening smoke in vintage Custom-Bilt pipe");
 
 
 ReactDOM.render(
-  <SmokeForm brand={smoke.brand} blend={smoke.blend} timenday={smoke.timenday} comment={smoke.comment} />,
+  <SmokeForm />,
   document.getElementById('root')
 );
