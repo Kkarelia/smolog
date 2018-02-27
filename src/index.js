@@ -17,12 +17,24 @@ class Smoke {
   }
 }
 
+
 class SmokeForm extends React.Component {
+
   constructor(props) {
      super(props);
-     var today = new Date();
 
-     this.state = {brand: 'Peterson', blend: 'Old Dublin', timenday: today, comment: 'Your average good smoke'};
+      var d = new Date(),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+
+      var datestring = [year, month, day].join('-');
+
+
+     this.state = {brand: 'Peterson', blend: 'Old Dublin', timenday: datestring, comment: 'Your average good smoke'};
 
      this.brandChange = this.brandChange.bind(this);
      this.blendChange = this.blendChange.bind(this);
@@ -30,6 +42,8 @@ class SmokeForm extends React.Component {
      this.commentChange = this.commentChange.bind(this);
      this.handleSubmit = this.handleSubmit.bind(this);
    }
+
+
 
    brandChange(event) {
     this.setState({brand: event.target.value});
@@ -61,7 +75,7 @@ class SmokeForm extends React.Component {
       <table border="0">
       <tr><td>Brand:</td><td><input type="text" name="brand" size="50" value={this.state.brand} onChange={this.brandChange} ></input></td></tr>
       <tr><td>Blend:</td><td><input type="text" name="blend" size="50" value={this.state.blend} onChange={this.blendChange}></input></td></tr>
-      <tr><td>Time:</td><td><input type="text" name="time" size="50" value={this.state.timenday} onChange={this.timendayChange}></input></td></tr>
+      <tr><td>Date:</td><td><input type="date" name="time" size="50" value={this.state.timenday} onChange={this.timendayChange}></input></td></tr>
       <tr><td valign="top">Note:</td><td><textarea rows="4" cols="46" onChange={this.commentChange}>{this.state.comment}</textarea></td></tr>
       <tr><td valign="top"></td><td><input type="submit" value="Log This Smoke" /></td></tr>
       </table>
